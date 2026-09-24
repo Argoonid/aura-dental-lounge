@@ -5,7 +5,7 @@ import { TRANSLATIONS } from '../data/translations';
 interface LanguageContextType {
   lang: Language;
   setLang: (l: Language) => void;
-  t: typeof TRANSLATIONS.ru;
+  t: typeof TRANSLATIONS.en;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -13,7 +13,8 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [lang, setLang] = useState<Language>(() => {
     const saved = localStorage.getItem('aura_lang');
-    return (saved === 'en' || saved === 'ru') ? saved : 'ru';
+    // По умолчанию стартуем на английском языке ('en')
+    return (saved === 'en' || saved === 'ru') ? saved : 'en';
   });
 
   useEffect(() => {
